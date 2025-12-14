@@ -4,54 +4,274 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarea semana 3</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <header>
-        <h1>Bienvenidos</h1>
-        <h2>Tarea semana 3</h2>
-        <h3>Tema:</h3>
-        <p>HTML5 etiquetas básicas, estructura de documentos</p>
+        <h1>RRHH - Sistema de Gestión de Recursos Humanos</h1>
+        <h2>Gestiona tu talento humano de manera eficiente y profesional</h2>
+     
     </header>
     <nav>
-
         <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#multimedia">Multimedia</a></li>
-            <li><a href="#informacion">Información</a></li>
+            <li><a href="#inicio">Dashboard</a></li>
+            <li><a href="#empleados">Empleados</a></li>
+            <li><a href="#reclutamiento">Reclutamiento</a></li>
+            <li><a href="#nomina">Nómina</a></li>
+            <li><a href="#capacitacion">Capacitación</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
+
     <main>
-        <section id="Inicio">
+        <section id="inicio">
+            <h2>Panel de Control - Dashboard</h2>
             <article>
-                <h3>¿Qué es HTML5?</h3>
+                <h3>Bienvenido al Sistema RRHH</h3>
+                 <p>
+                    Nuestro sistema de <strong>gestión de recursos humanos</strong> está diseñado para 
+                    optimizar todos los procesos relacionados con la administración del capital humano 
+                    en tu organización. Con herramientas <em>innovadoras</em> y una interfaz intuitiva, 
+                    podrás gestionar desde el reclutamiento hasta la nómina de forma eficiente.
+                </p>
                 <p>
-                    HTML5 es la <strong>última versión</strong> del lenguaje de marcado para estructurar 
-                    contenido en la web. Es <em>fundamental</em> para cualquier desarrollador web y 
-                    permite crear páginas modernas e interactivas.
+                    Aumenta la <strong>productividad</strong> de tu departamento de RRHH y mejora la 
+                    <em>experiencia de tus colaboradores</em> con nuestras soluciones integradas.
                 </p>
             </article>
         </section>
-        <section id="Multimedia">
-            <h2>Contenido Multimedia</h2>
+
+        <section id="multimedia">
+            <h2>Conoce nuestro Sistema</h2>
             <article>
                 <h3>Imagen</h3>
                 <img src="assets/img/img_html5.jpg" alt="Logo HTML5" width="600">
             </article>
 
             <article>
-                <h3>Video</h3>
-                <video width="600" controls>
-                    <source src="assets/video/" type="video/mp4">
-                    Tu navegador no soporta el elemento de video.
-                </video>
-                <p><em>Nota: Coloca tu video en la carpeta assets/video/</em></p>
+                <h3>Video tutorial del sistema</h3>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/EvKm8yhM7V8?si=miBAdxxjVsDQ4jK-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </article>
         </section>
-        <section id="Información"></section>
-        <section id="Contacto"></section>
+
+        <section id="empleados">
+            <h2>Gestión de empleados</h2>
+            <article>
+                <h3>Módulos Principales del Sistema</h3>
+                <ol>
+                    <li><strong>Gestión de perfiles</strong> - Administra información completa de cada empleado</li>
+                    <li><strong>Control de asistencia</strong> - Registra entradas, salidas y ausencias</li>
+                    <li><strong>Evaluación de desempeño</strong> - Realiza seguimiento del rendimiento</li>
+                    <li><strong>Gestión documental</strong> - Almacena contratos, certificados y documentos</li>
+                    <li><strong>Organigrama dinámico</strong> - Visualiza la estructura organizacional</li>
+                </ol>
+            </article>
+
+             <article>
+                <h3>Beneficios para tu organización</h3>
+                <ul>
+                    <li>Centralización de información de empleados</li>
+                    <li>Automatización de procesos administrativos</li>
+                    <li>Reducción de errores y tiempo de gestión</li>
+                    <li>Reportes y análisis en tiempo real</li>
+                    <li>Cumplimiento de normativas laborales</li>
+                    <li>Mejora en la comunicación interna</li>
+                </ul>
+            </article>
+        </section>
+
+        <section>
+            <h2>Empleados registrados recientemente</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre Completo</th>
+                        <th>Departamento</th>
+                        <th>Cargo</th>
+                        <th>Fecha de Ingreso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>EMP-001</td>
+                        <td>María González Pérez</td>
+                        <td>Tecnología</td>
+                        <td>Desarrolladora Senior</td>
+                        <td>15/11/2024</td>
+                    </tr>
+                    <tr>
+                        <td>EMP-002</td>
+                        <td>Carlos Rodríguez López</td>
+                        <td>Marketing</td>
+                        <td>Especialista Digital</td>
+                        <td>20/11/2024</td>
+                    </tr>
+                    <tr>
+                        <td>EMP-003</td>
+                        <td>Ana Martínez Silva</td>
+                        <td>Recursos Humanos</td>
+                        <td>Analista de Talento</td>
+                        <td>25/11/2024</td>
+                    </tr>
+                    <tr>
+                        <td>EMP-004</td>
+                        <td>Juan Fernández Castro</td>
+                        <td>Finanzas</td>
+                        <td>Contador General</td>
+                        <td>01/12/2024</td>
+                    </tr>
+                    <tr>
+                        <td>EMP-005</td>
+                        <td>Laura Sánchez Mora</td>
+                        <td>Operaciones</td>
+                        <td>Coordinadora Logística</td>
+                        <td>05/12/2024</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="reclutamiento">
+            <h2>Proceso de reclutamiento y selección</h2>
+            <article>
+                <h3>Etapas del Proceso</h3>
+                <ol>
+                    <li><strong>Publicación de Vacantes</strong> - Difunde oportunidades laborales</li>
+                    <li><strong>Recepción de Candidatos</strong> - Gestiona aplicaciones automáticamente</li>
+                    <li><strong>Evaluación Inicial</strong> - Filtra candidatos según requisitos</li>
+                    <li><strong>Entrevistas</strong> - Programa y registra entrevistas</li>
+                    <li><strong>Selección Final</strong> - Toma decisiones informadas</li>
+                </ol>
+            </article>
+
+            <article>
+                <h3>Estadísticas Actuales</h3>
+                <ul>
+                   <li>Vacantes activas: 12 posiciones abiertas</li>
+                   <li>Candidatos en proceso: 45 aplicaciones</li>
+                   <li>Entrevistas programadas: 8 esta semana</li>
+                   <li>Tasa de conversión: 75% de aceptación</li>
+                </ul>
+            </article>
+        </section>
+
+        <section>
+            <h2>Vacantes disponibles</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Posición</th>
+                        <th>Departamento</th>
+                        <th>Aplicantes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>VAC-101</td>
+                        <td>Gerente de Ventas</td>
+                        <td>Comercial</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>VAC-102</td>
+                        <td>Ingeniero de Software</td>
+                        <td>Tecnología</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>VAC-103</td>
+                        <td>Diseñador UX/UI</td>
+                        <td>Producto</td>
+                        <td>18</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        </section>
+           <section id="capacitacion">
+            <h2>Capacitación y desarrollo</h2>
+            
+            <article>
+                <h3>Programas de Formación Disponibles</h3>
+                <ul>
+                    <li>Liderazgo y Gestión de Equipos</li>
+                    <li>Habilidades Digitales y Tecnología</li>
+                    <li>Comunicación Efectiva</li>
+                    <li>Gestión del Tiempo y Productividad</li>
+                    <li>Normativas Laborales y Compliance</li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="contacto">
+            <h2>Registro de Nuevo Empleado</h2>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo: *</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez García" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico Corporativo: *</label>
+                    <input type="email" id="correo" name="correo" placeholder="empleado@empresa.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono de Contacto:</label>
+                    <input type="text" id="telefono" name="telefono" placeholder="+593 99 999 9999">
+                </div>
+
+                <div class="form-group">
+                    <label for="departamento">Departamento:</label>
+                    <input type="text" id="departamento" name="departamento" placeholder="Ej: Recursos Humanos">
+                </div>
+
+                <div class="form-group">
+                    <label for="cargo">Cargo:</label>
+                    <input type="text" id="cargo" name="cargo" placeholder="Ej: Analista de RRHH">
+                </div>
+
+                <div class="form-group">
+                    <label for="observaciones">Observaciones:</label>
+                    <textarea id="observaciones" name="observaciones" rows="5" placeholder="Información adicional relevante..."></textarea>
+                </div>
+
+                <button type="submit">Registrar Empleado</button>
+            </form>
+        </section>
+        
+        <section id="nomina">
+            <h2>Gestión de nómina</h2>
+            
+            <article>
+                <h3>Características del módulo de nómina</h3>
+                <p>
+                    El módulo de nómina <strong>automatiza completamente</strong> el cálculo de sueldos, 
+                    bonificaciones, deducciones y beneficios. Con <em>precisión total</em> en el 
+                    cumplimiento de las regulaciones laborales vigentes.
+                </p>
+            </article>
+
+            <article>
+                <h3>Funcionalidades Principales</h3>
+                <ul>
+                    <li>Cálculo automático de salarios y deducciones</li>
+                    <li>Gestión de horas extras y bonificaciones</li>
+                    <li>Generación de reportes fiscales</li>
+                    <li>Integración con sistemas bancarios</li>
+                    <li>Historial completo de pagos</li>
+                </ul>
+            </article>
+        </section>
     </main>
-    
+  
+    <footer>
+        <p>&copy; 2526 Christian Becerra. Todos los derechos reservados.</p>
+        <p>Creado con <strong>HTML5</strong> y <strong>CSS3</strong></p>
+    </footer>
 </body>
 </html>
