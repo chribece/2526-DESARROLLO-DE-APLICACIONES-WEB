@@ -15,12 +15,12 @@
 
 /* Personalización botones */
 .btn-primary {
-  background-color: #ff5733 !important;
-  border-color: #ff5733 !important;
+  background-color: #f2a517 !important;
+  border-color: #f2a517 !important;
   transition: all 0.3s ease;
 }
 .btn-primary:hover {
-  background-color: #e04522 !important;
+  background-color: #dfb25f !important;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 87, 51, 0.4);
 }
@@ -57,5 +57,13 @@ a {
   transition: color 0.2s ease;
 }
 a:hover {
-  color: #ff5733 !important;
+  color: #f2a517 !important;
+}
+.custom-navbar-bg {
+  background-color: #161930 !important;
+}
+thead.table-dark th {
+  background-color: #161930 !important;
+  color: #ffffff !important;
+  border-color: #161930 !important; /* opcional: para eliminar bordes claros */
 }
