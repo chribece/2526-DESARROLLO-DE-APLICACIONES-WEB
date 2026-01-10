@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Interactiva</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1> Galería Interactiva</h1>
+        
+        <div class="controls">
+            <input 
+                type="url" 
+                id="imageInput" 
+                placeholder="Ingresa la URL de una imagen (ej: https://example.com/imagen.jpg)"
+            >
+            <button id="addBtn">Agregar Imagen</button>
+            <button id="deleteBtn" disabled>Eliminar Seleccionada</button>
+        </div>
+        <div class="info-text" id="infoText">Pega una URL de imagen y presiona Agregar o Enter</div>
+        <div id="errorMsg" class="error"></div>
+
+        <div id="gallery" class="gallery">
+            <div class="empty-message">La galería está vacía. ¡Agrega una imagen para comenzar!</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
