@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario con Validación Dinámica</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Registro</h1>
+    <p class="intro">
+      Completa los campos. El botón <strong>Enviar</strong> se habilitará cuando todo sea válido.
+    </p>
+
+    <form id="registroForm" novalidate>
+      <!-- Nombre -->
+      <div class="form-group">
+        <label for="nombre">Nombre <span class="required">*</span></label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Tu nombre"
+          autocomplete="name"
+          aria-describedby="nombreError"
+          aria-invalid="false"
+        />
+        <small class="hint">Mínimo 3 caracteres.</small>
+        <span class="error" id="nombreError" aria-live="polite"></span>
+      </div>
+
+      <!-- Correo -->
+      <div class="form-group">
+        <label for="email">Correo electrónico <span class="required">*</span></label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="tucorreo@ejemplo.com"
+          autocomplete="email"
+          aria-describedby="emailError"
+          aria-invalid="false"
+        />
+        <small class="hint">Debe tener el formato usuario@dominio.com</small>
+        <span class="error" id="emailError" aria-live="polite"></span>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="form-group">
+        <label for="password">Contraseña <span class="required">*</span></label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="••••••••"
+          autocomplete="new-password"
+          aria-describedby="passwordError"
+          aria-invalid="false"
+        />
+        <small class="hint">Mínimo 8 caracteres, con al menos <strong>un número</strong> y <strong>un carácter especial</strong>.</small>
+        <span class="error" id="passwordError" aria-live="polite"></span>
+      </div>
+
+      <!-- Confirmación -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirmar contraseña <span class="required">*</span></label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Repite tu contraseña"
+          autocomplete="new-password"
+          aria-describedby="confirmPasswordError"
+          aria-invalid="false"
+        />
+        <span class="error" id="confirmPasswordError" aria-live="polite"></span>
+      </div>
+
+      <!-- Edad -->
+      <div class="form-group">
+        <label for="edad">Edad <span class="required">*</span></label>
+        <input
+          type="number"
+          id="edad"
+          name="edad"
+          placeholder="Ej: 18"
+          min="0"
+          step="1"
+          inputmode="numeric"
+          aria-describedby="edadError"
+          aria-invalid="false"
+        />
+        <small class="hint">Debes tener 18 años o más.</small>
+        <span class="error" id="edadError" aria-live="polite"></span>
+      </div>
+
+      <!-- Acciones -->
+      <div class="form-actions">
+        <button type="submit" id="btnEnviar" disabled>Enviar</button>
+        <button type="reset" id="btnReset">Reiniciar</button>
+      </div>
+    </form>
+  </main>
+
+<script src="script.js"></script>
+</body>
+</html>

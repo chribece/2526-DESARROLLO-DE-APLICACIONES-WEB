@@ -1,0 +1,140 @@
+
+:root{
+  --bg: #0b1020;
+  --card: #121a31;
+  --text: #e8ecf7;
+  --muted: #9fb0d0;
+  --error: #dc2626;
+  --ok: #16a34a;
+  --border: #223150;
+  --focus: #528bff;
+  --btn: #2563eb;
+  --btn-hover: #1d4ed8;
+  --btn-disabled: #3a4e7a;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.4;
+}
+
+.container {
+  max-width: 720px;
+  margin: 48px auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 1.8rem;
+}
+
+.intro { color: var(--muted); margin: 0 0 24px; }
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.required { color: #fbbf24; }
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: #0f172a;
+  color: var(--text);
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+input::placeholder { color: #6b7280; }
+
+input:focus-visible {
+  outline: none;
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px rgba(82, 139, 255, .25);
+}
+
+/* Estados de validación */
+.is-valid {
+  border-color: var(--ok) !important;
+  box-shadow: 0 0 0 3px rgba(22,163,74,.18);
+}
+
+.is-invalid {
+  border-color: var(--error) !important;
+  box-shadow: 0 0 0 3px rgba(220,38,38,.18);
+}
+
+.hint {
+  display: block;
+  color: var(--muted);
+  margin-top: 6px;
+  font-size: .9rem;
+}
+
+.error {
+  display: block;
+  color: var(--error);
+  margin-top: 6px;
+  min-height: 1.2em; /* reserva espacio para evitar “saltos” */
+  font-size: .95rem;
+}
+
+.form-actions {
+  margin-top: 22px;
+  display: flex;
+  gap: 12px;
+}
+
+button[type="submit"] {
+  background: var(--btn);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s ease, transform .05s ease;
+}
+
+button[type="submit"]:hover { background: var(--btn-hover); }
+button[type="submit"]:active { transform: translateY(1px); }
+
+button[disabled] {
+  background: var(--btn-disabled) !important;
+  cursor: not-allowed !important;
+  opacity: .8;
+}
+
+button[type="reset"] {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button[type="reset"]:hover {
+  border-color: #3a4e7a;
+}
