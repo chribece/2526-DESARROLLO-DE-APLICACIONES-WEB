@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Dinámica de Productos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Diseño de una Lista Dinámica con Plantillas Básicas en JavaScript</h1>
+            <p>Creación de una Lista Dinámica de Productos</p>
+        </div>
+
+        <div class="content">
+            <div class="form-section">
+                <h3>Agregar Nuevo Producto</h3>
+                <div class="input-group">
+                    <input type="text" id="productName" placeholder="Nombre del producto" required>
+                    <input type="number" id="productPrice" placeholder="Precio" step="0.01" required>
+                </div>
+                <textarea id="productDescription" placeholder="Descripción breve del producto"></textarea>
+                <button onclick="agregarProducto()">Agregar Producto</button>
+            </div>
+
+            <div id="productContainer"></div>
+        </div>
+    </div>
+    <script src="scrip.js"></script>
+</body>
+
+<footer class="footer">
+  Elaborado por Christian Becerra
+</footer>
+
+</html>
