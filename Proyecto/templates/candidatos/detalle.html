@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}{{ candidato.nombres }} - Detalle{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('index') }}" class="text-warning">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('lista_candidatos') }}" class="text-warning">Candidatos</a></li>
+                    <li class="breadcrumb-item active text-light" aria-current="page">{{ candidato.nombres }}</li>
+                </ol>
+            </nav>
+            <h2 class="text-white fw-bold">
+                <div class="avatar-initials d-inline-flex me-2" style="width: 50px; height: 50px; font-size: 1.5rem;">
+                    {{ candidato.nombres.split()[0][0] }}{{ candidato.nombres.split()[1][0] if candidato.nombres.split()|length > 1 else '' }}
+                </div>
+                {{ candidato.nombres }}
+            </h2>
+            <p class="text-muted">
+                <i class="bi bi-card-text me-2"></i>Cédula: {{ candidato.cedula }}
+            </p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a href="{{ url_for('lista_candidatos') }}" class="btn btn-outline-light">
+                <i class="bi bi-arrow-left me-2"></i>Volver
+            </a>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Información Personal -->
+        <div class="col-lg-4">
+            <div class="custom-card h-100">
+                <div class="card-header-custom">
+                    <h5 class="mb-0"><i class="bi bi-person me-2"></i>Información Personal</h5>
+                </div>
+                <ul class="list-group list-group-flush bg-transparent">
+                    <li class="list-group-item bg-transparent text-light border-secondary">
+                        <i class="bi bi-envelope text-warning me-2"></i>
+                        <div>
+                            <small class="text-muted d-block">Correo</small>
+                            {{ candidato.correo }}
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent text-light border-secondary">
+                        <i class="bi bi-telephone text-warning me-2"></i>
+                        <div>
+                            <small class="text-muted d-block">Teléfono</small>
+                            {{ candidato.telefono }}
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent text-light border-secondary">
+                        <i class="bi bi-geo-alt text-warning me-2"></i>
+                        <div>
+                            <small class="text-muted d-block">Dirección</small>
+                            {{ candidato.direccion }}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Estudios -->
+        <div class="col-lg-4">
+            <div class="custom-card h-100">
+                <div class="card-header-custom d-flex justify-content-between">
+                    <h5 class="mb-0"><i class="bi bi-mortarboard me-2"></i>Estudios</h5>
+                    <span class="badge bg-warning text-dark">{{ estudios|length }}</span>
+                </div>
+                {% if estudios %}
+                    <ul class="list-group list-group-flush bg-transparent">
+                        {% for est in estudios %}
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{ est.titulos }}</h6>
+                                <small class="text-warning">{{ est.nivel }}</small>
+                            </div>
+                            <p class="mb-1 text-muted">{{ est.instituciones }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="text-center text-muted py-4">
+                        <i class="bi bi-inbox display-4"></i>
+                        <p class="mt-2">Sin registros de estudios</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Experiencia Laboral -->
+        <div class="col-lg-4">
+            <div class="custom-card h-100">
+                <div class="card-header-custom d-flex justify-content-between">
+                    <h5 class="mb-0"><i class="bi bi-briefcase me-2"></i>Experiencia</h5>
+                    <span class="badge bg-warning text-dark">{{ experiencias|length }}</span>
+                </div>
+                {% if experiencias %}
+                    <div class="timeline-compact">
+                        {% for exp in experiencias %}
+                        <div class="timeline-item-compact">
+                            <h6 class="text-warning mb-1">{{ exp.cargo }}</h6>
+                            <p class="mb-1 text-light">{{ exp.empresa }}</p>
+                            <small class="text-muted">{{ exp.descripcion }}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center text-muted py-4">
+                        <i class="bi bi-inbox display-4"></i>
+                        <p class="mt-2">Sin experiencia registrada</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Licencias y Certificaciones -->
+        <div class="col-lg-6">
+            <div class="custom-card">
+                <div class="card-header-custom d-flex justify-content-between">
+                    <h5 class="mb-0"><i class="bi bi-award me-2"></i>Licencias y Certificaciones</h5>
+                    <span class="badge bg-warning text-dark">{{ licencias|length }}</span>
+                </div>
+                {% if licencias %}
+                    <div class="table-responsive">
+                        <table class="table table-dark table-sm mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Vencimiento</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for lic in licencias %}
+                                <tr>
+                                    <td>{{ lic.tipo }}</td>
+                                    <td>{{ lic.fecha_caducidad }}</td>
+                                    <td>
+                                        {% if lic.fecha_caducidad > '2024-12-31' %}
+                                            <span class="badge bg-success">Vigente</span>
+                                        {% else %}
+                                            <span class="badge bg-warning text-dark">Por vencer</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="text-center text-muted py-3">
+                        <p class="mb-0">Sin licencias registradas</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Postulaciones -->
+        <div class="col-lg-6">
+            <div class="custom-card">
+                <div class="card-header-custom d-flex justify-content-between">
+                    <h5 class="mb-0"><i class="bi bi-file-earmark-text me-2"></i>Postulaciones</h5>
+                    <span class="badge bg-warning text-dark">{{ postulaciones|length }}</span>
+                </div>
+                {% if postulaciones %}
+                    <ul class="list-group list-group-flush bg-transparent">
+                        {% for post in postulaciones %}
+                        <li class="list-group-item bg-transparent text-light border-secondary d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">#{{ post.id_postulacion }} - {{ post.cargo_nombre }}</h6>
+                                <small class="text-muted">{{ post.create_at }}</small>
+                            </div>
+                            <span class="badge bg-info">{{ post.estado }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="text-center text-muted py-3">
+                        <p class="mb-0">Sin postulaciones activas</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

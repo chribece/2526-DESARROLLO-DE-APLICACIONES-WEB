@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Acerca de - Sistema de Reclutamiento{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="custom-card">
+                <div class="text-center mb-4">
+                    <div class="feature-icon mx-auto" style="width: 80px; height: 80px; font-size: 2.5rem;">
+                        <i class="bi bi-briefcase-fill"></i>
+                    </div>
+                    <h2 class="text-white fw-bold mt-3">Sistema de Reclutamiento</h2>
+                    <p class="text-muted">Gestión integral de talento humano</p>
+                </div>
+
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6">
+                        <h5 class="text-warning"><i class="bi bi-layers me-2"></i>Arquitectura</h5>
+                        <ul class="list-unstyled text-light">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Flask (Python)</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Jinja2 Templates</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Bootstrap 5</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Arquitectura MVC</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="text-warning"><i class="bi bi-database me-2"></i>Entidades</h5>
+                        <ul class="list-unstyled text-light">
+                            <li><i class="bi bi-person text-info me-2"></i>Candidatos</li>
+                            <li><i class="bi bi-file-earmark text-info me-2"></i>Postulaciones</li>
+                            <li><i class="bi bi-briefcase text-info me-2"></i>Cargos</li>
+                            <li><i class="bi bi-clock-history text-info me-2"></i>Historial</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-top border-secondary pt-4">
+                    <h5 class="text-warning mb-3"><i class="bi bi-diagram-3 me-2"></i>Modelo de Datos</h5>
+                    <p class="text-light">
+                        El sistema gestiona el ciclo completo de reclutamiento: desde el registro del candidato, 
+                        sus estudios y experiencia laboral, hasta la postulación a cargos específicos y el 
+                        seguimiento del proceso mediante historial de estados.
+                    </p>
+                </div>
+
+                <div class="text-center mt-4">
+                    <p class="text-muted mb-0">
+                        <i class="bi bi-code-slash me-2"></i>
+                        Desarrollado con Flask + Jinja2 | 2024
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Postulación #{{ postulacion.id_postulacion }} - Detalle{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('index') }}" class="text-warning">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('lista_postulaciones') }}" class="text-warning">Postulaciones</a></li>
+                    <li class="breadcrumb-item active text-light">#{{ postulacion.id_postulacion }}</li>
+                </ol>
+            </nav>
+            <h2 class="text-white fw-bold">
+                Postulación #{{ postulacion.id_postulacion }}
+                <span class="badge 
+                    {% if postulacion.estado == 'En revisión' %}bg-warning text-dark
+                    {% elif postulacion.estado == 'Entrevista técnica' %}bg-info
+                    {% elif postulacion.estado == 'Oferta enviada' %}bg-success
+                    {% else %}bg-secondary{% endif %} ms-2">
+                    {{ postulacion.estado }}
+                </span>
+            </h2>
+            <p class="text-muted">{{ postulacion.cargo_nombre }}</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a href="{{ url_for('lista_postulaciones') }}" class="btn btn-outline-light">
+                <i class="bi bi-arrow-left me-2"></i>Volver
+            </a>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Candidatos -->
+        <div class="col-lg-4">
+            <div class="custom-card h-100">
+                <div class="card-header-custom">
+                    <h5 class="mb-0"><i class="bi bi-people me-2"></i>Candidatos</h5>
+                </div>
+                {% if candidatos %}
+                    <ul class="list-group list-group-flush bg-transparent">
+                        {% for cand in candidatos %}
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-initials me-2">
+                                    {{ cand.nombres.split()[0][0] }}{{ cand.nombres.split()[1][0] if cand.nombres.split()|length > 1 else '' }}
+                                </div>
+                                <div>
+                                    <div class="fw-bold">{{ cand.nombres }}</div>
+                                    <small class="text-muted">{{ cand.correo }}</small>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="text-center text-muted py-3">Sin candidatos asignados</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Historial -->
+        <div class="col-lg-4">
+            <div class="custom-card h-100">
+                <div class="card-header-custom">
+                    <h5 class="mb-0"><i class="bi bi-clock-history me-2"></i>Historial</h5>
+                </div>
+                {% if historial %}
+                    <div class="timeline-compact">
+                        {% for hist in historial %}
+                        <div class="timeline-item-compact {% if loop.last %}active{% endif %}">
+                            <h6 class="text-warning mb-1">{{ hist.estado }}</h6>
+                            <p class="mb-1 text-light small">{{ hist.descripcion }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center text-muted py-3">Sin historial registrado</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Documentos -->
+        <div class="col-lg-4">
+            <div class="custom-card h-100">
+                <div class="card-header-custom">
+                    <h5 class="mb-0"><i class="bi bi-files me-2"></i>Documentos</h5>
+                </div>
+                {% if documentos %}
+                    <ul class="list-group list-group-flush bg-transparent">
+                        {% for doc in documentos %}
+                        <li class="list-group-item bg-transparent text-light border-secondary d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="bi bi-file-earmark-text text-warning me-2"></i>
+                                {{ doc.nombrearchivo }}
+                            </div>
+                            <span class="badge bg-secondary">{{ doc.tipo }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="text-center text-muted py-3">Sin documentos adjuntos</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

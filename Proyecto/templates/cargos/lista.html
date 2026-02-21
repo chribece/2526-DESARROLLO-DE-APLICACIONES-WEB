@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Cargos - Sistema de Reclutamiento{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2 class="text-white fw-bold">
+                <i class="bi bi-briefcase me-2 text-warning"></i>Cargos Disponibles
+            </h2>
+            <p class="text-muted">Vacantes abiertas en la organización</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a href="{{ url_for('nuevo_cargo') }}" class="btn btn-warning">
+                <i class="bi bi-plus-lg me-2"></i>Nuevo Cargo
+            </a>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        {% for cargo in cargos %}
+        <div class="col-md-6 col-lg-4">
+            <div class="custom-card h-100">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="feature-icon me-3" style="width: 50px; height: 50px;">
+                        <i class="bi bi-briefcase-fill"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-white mb-0">{{ cargo.nombre }}</h5>
+                        <small class="text-muted">ID: {{ cargo.id_cargo }}</small>
+                    </div>
+                </div>
+                <p class="text-muted">{{ cargo.descripcion }}</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto">
+                    <a href="{{ url_for('api_cargo', id_cargo=cargo.id_cargo) }}" 
+                       class="btn btn-sm btn-outline-info" target="_blank">
+                        <i class="bi bi-code me-1"></i>API
+                    </a>
+                    <span class="badge bg-warning text-dark">
+                        <i class="bi bi-lightning-charge me-1"></i>Activo
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
