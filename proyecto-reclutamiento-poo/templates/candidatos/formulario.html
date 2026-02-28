@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}{{ titulo }} - GF{% endblock %}
+
+{% block content %}
+<div class="fade-in" style="max-width: 900px; margin: 0 auto;">
+    <h1 style="color: var(--color-dark); margin-bottom: 1.5rem;">
+        <i class="fas fa-{{ 'edit' if candidato else 'user-plus' }}" style="color: var(--color-primary);"></i>
+        {{ titulo }}
+    </h1>
+
+    <div class="card">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    {{ form.nombre.label(class="form-label") }}
+                    {{ form.nombre(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.apellido.label(class="form-label") }}
+                    {{ form.apellido(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control", type="email") }}
+                {% if form.email.errors %}
+                    <span style="color: var(--color-danger);">{{ form.email.errors[0] }}</span>
+                {% endif %}
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    {{ form.telefono.label(class="form-label") }}
+                    {{ form.telefono(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.ubicacion.label(class="form-label") }}
+                    {{ form.ubicacion(class="form-control") }}
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    {{ form.linkedin.label(class="form-label") }}
+                    {{ form.linkedin(class="form-control", placeholder="https://linkedin.com/in/...") }}
+                </div>
+                <div class="form-group">
+                    {{ form.portfolio.label(class="form-label") }}
+                    {{ form.portfolio(class="form-control", placeholder="https://...") }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form.resumen.label(class="form-label") }}
+                {{ form.resumen(class="form-control", rows="4", placeholder="Breve descripción profesional...") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.habilidades.label(class="form-label") }}
+                {{ form.habilidades(class="form-control", placeholder="Python, JavaScript, Gestión de proyectos, etc.") }}
+                <small style="color: #666;">Separadas por coma</small>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    {{ form.experiencia_anos.label(class="form-label") }}
+                    {{ form.experiencia_anos(class="form-control", type="number") }}
+                </div>
+                <div class="form-group">
+                    {{ form.nivel_educativo.label(class="form-label") }}
+                    {{ form.nivel_educativo(class="form-control form-select") }}
+                </div>
+                <div class="form-group">
+                    {{ form.disponibilidad.label(class="form-label") }}
+                    {{ form.disponibilidad(class="form-control form-select") }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form.salario_esperado.label(class="form-label") }}
+                {{ form.salario_esperado(class="form-control", placeholder="0.00") }}
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Guardar Candidato
+                </button>
+                <a href="{{ url_for('lista_candidatos') }}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

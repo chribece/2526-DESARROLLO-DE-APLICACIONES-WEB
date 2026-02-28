@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Candidatos - GF {% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h1 style="color: var(--color-dark);">
+            <i class="fas fa-users" style="color: var(--color-primary);"></i>
+            Base de Candidatos
+        </h1>
+        <a href="{{ url_for('nuevo_candidato') }}" class="btn btn-primary">
+            <i class="fas fa-user-plus"></i> Nuevo Candidato
+        </a>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="busqueda-candidatos" class="form-control" placeholder="🔍 Buscar por nombre, email o habilidades...">
+        <form method="GET" style="display: flex; gap: 0.5rem;">
+            {{ form_busqueda.disponibilidad(class="form-control form-select") }}
+            <button type="submit" class="btn btn-secondary">Filtrar</button>
+        </form>
+        <a href="{{ url_for('lista_candidatos', activo=0 if activo else 1) }}" class="btn btn-secondary">
+            {{ 'Ver Inactivos' if activo else 'Ver Activos' }}
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="table-container">
+            <table class="table" id="tabla-candidatos">
+                <thead>
+                    <tr>
+                        <th>Candidato</th>
+                        <th>Contacto</th>
+                        <th>Experiencia</th>
+                        <th>Habilidades</th>
+                        <th>Disponibilidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for candidato in candidatos %}
+                    <tr>
+                        <td>
+                            <strong>{{ candidato.nombre_completo }}</strong>
+                            <br><small style="color: #666;">{{ candidato.nivel_educativo or 'Sin especificar' }}</small>
+                        </td>
+                        <td>
+                            <a href="mailto:{{ candidato.email }}" style="color: var(--color-dark);">
+                                <i class="fas fa-envelope"></i> {{ candidato.email }}
+                            </a>
+                            {% if candidato.telefono %}
+                            <br><small><i class="fas fa-phone"></i> {{ candidato.telefono }}</small>
+                            {% endif %}
+                        </td>
+                        <td>{{ candidato.experiencia_anos }} años</td>
+                        <td>
+                            {% for hab in candidato.habilidades[:3] %}
+                            <span style="display: inline-block; background: #e3f2fd; color: #1976d2; 
+                                         padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin: 0.1rem;">
+                                {{ hab }}
+                            </span>
+                            {% endfor %}
+                            {% if candidato.habilidades|length > 3 %}
+                            <span style="font-size: 0.8rem; color: #666;">+{{ candidato.habilidades|length - 3 }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="badge badge-info">{{ candidato.disponibilidad }}</span>
+                        </td>
+                        <td>
+                            <a href="{{ url_for('detalle_candidato', id=candidato.id) }}" class="btn btn-sm btn-secondary" title="Ver detalle">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="{{ url_for('editar_candidato', id=candidato.id) }}" class="btn btn-sm btn-secondary" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 3rem; color: #999;">
+                            <i class="fas fa-user-slash" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                            No hay candidatos registrados
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

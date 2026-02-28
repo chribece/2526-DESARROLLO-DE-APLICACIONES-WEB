@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Postulaciones - GF{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h1 style="color: var(--color-dark);">
+            <i class="fas fa-clipboard-list" style="color: var(--color-primary);"></i>
+            Gestión de Postulaciones
+        </h1>
+        <a href="{{ url_for('nueva_postulacion') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Nueva Postulación
+        </a>
+    </div>
+
+    <div class="search-box">
+        <input type="text" class="form-control" placeholder="Buscar postulaciones..." style="flex: 1;">
+        <select class="form-control form-select" style="width: auto;" onchange="window.location.href='?estado='+this.value">
+            <option value="">Todos los estados</option>
+            <option value="Recibido" {% if estado_filtro == 'Recibido' %}selected{% endif %}>Recibido</option>
+            <option value="En revisión" {% if estado_filtro == 'En revisión' %}selected{% endif %}>En revisión</option>
+            <option value="Entrevista técnica" {% if estado_filtro == 'Entrevista técnica' %}selected{% endif %}>Entrevista técnica</option>
+            <option value="Entrevista RRHH" {% if estado_filtro == 'Entrevista RRHH' %}selected{% endif %}>Entrevista RRHH</option>
+            <option value="Oferta" {% if estado_filtro == 'Oferta' %}selected{% endif %}>Oferta</option>
+            <option value="Contratado" {% if estado_filtro == 'Contratado' %}selected{% endif %}>Contratado</option>
+        </select>
+    </div>
+
+    <div class="card">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Candidato</th>
+                        <th>Cargo</th>
+                        <th>Estado</th>
+                        <th>Fuente</th>
+                        <th>Puntaje</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in postulaciones %}
+                    <tr>
+                        <td>
+                            {% if post.candidato %}
+                            <a href="{{ url_for('detalle_candidato', id=post.candidato_id) }}" style="color: var(--color-dark); font-weight: 600;">
+                                {{ post.candidato.nombre_completo }}
+                            </a>
+                            {% else %}
+                            <span style="color: #999;">Candidato no disponible</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if post.cargo %}
+                            <strong>{{ post.cargo.titulo }}</strong>
+                            <br><small style="color: #666;">{{ post.cargo.departamento }}</small>
+                            {% else %}
+                            <span style="color: #999;">Cargo no disponible</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% set estado_class = post.estado.lower().replace(' ', '-') %}
+                            <span class="badge badge-{{ estado_class }}">
+                                {{ post.estado }}
+                            </span>
+                        </td>
+                        <td>{{ post.fuente_reclutamiento or 'No especificada' }}</td>
+                        <td>
+                            {% if post.puntaje_evaluacion %}
+                                <div class="puntaje-wrapper" data-puntaje="{{ post.puntaje_evaluacion }}">
+                                    <div class="puntaje-barra">
+                                        <div class="puntaje-progreso"></div>
+                                    </div>
+                                    <span class="puntaje-valor">{{ post.puntaje_evaluacion }}</span>
+                                </div>
+                            {% else %}
+                                <span class="texto-muted">Sin evaluar</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ formatear_fecha(post.fecha_postulacion) }}</td>
+                        <td>
+                            <a href="{{ url_for('detalle_postulacion', id=post.id) }}" class="btn btn-sm btn-secondary" title="Ver detalle">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <form action="{{ url_for('eliminar_postulacion', id=post.id) }}" method="POST" style="display: inline;">
+                                <button type="submit" class="btn btn-sm btn-danger" title="Eliminar" data-confirm="¿Eliminar esta postulación?">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 3rem; color: #999;">
+                            <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                            No hay postulaciones registradas
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.puntaje-wrapper').forEach(function(wrapper) {
+        var puntaje = wrapper.getAttribute('data-puntaje');
+        if (puntaje) {
+            wrapper.classList.add('puntaje-' + puntaje);
+        }
+    });
+});
+</script>
+{% endblock %}
