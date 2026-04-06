@@ -3,10 +3,14 @@ import os
 class Config:
     # Seguridad
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-2024-reclutamiento'
-    DEBUG = True
-    SESSION_COOKIE_SECURE = False  # True en producción con HTTPS
+    DEBUG = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
+    SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE', 'False').lower() == 'true'  # True en producción con HTTPS
     SESSION_COOKIE_HTTPONLY = True
     PERMANENT_SESSION_LIFETIME = 3600  # 1 hora
+    
+    # Configuración del servidor para producción
+    HOST = os.environ.get('HOST', '0.0.0.0')
+    PORT = int(os.environ.get('PORT', 5000))
     
     # Configuración MariaDB
     DB_HOST = os.environ.get('DB_HOST') or 'localhost'

@@ -1348,4 +1348,8 @@ def crear_usuario_admin():
     return render_template('admin/usuarios_crear.html', form=form)
 
 if __name__ == '__main__':
+    # Configuración para desarrollo local
     app.run(debug=True, port=5000)
+else:
+    # Configuración para producción (Render.com)
+    # Render establece las variables de entorno automáticamente
